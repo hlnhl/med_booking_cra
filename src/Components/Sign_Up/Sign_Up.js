@@ -29,8 +29,8 @@ const Sign_Up = () => {
                 </fieldset>
 
                 <fieldset id="submit">
-                    <input type="submit" defaultValue="Submit" id="submit-btn" />
-                    <input type="reset" defaultValue="Reset" id="reset-btn" />
+                    <input type="submit" value="Submit" id="submit-btn" />
+                    <input type="reset" value="Reset" id="reset-btn" />
                 </fieldset>
             </form>
         </div>
