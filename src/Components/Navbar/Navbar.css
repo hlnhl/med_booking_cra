@@ -4,7 +4,7 @@
 }
 
 nav {
-  margin: 0;
+  margin: 1rem;
   padding: 0;
   display: flex;
   justify-content: space-between;
@@ -42,7 +42,7 @@ a:hover:not(.nav_logo) {
   text-decoration-color: #3685fb;
 }
 
-button {
+nav button {
   margin: -4px 0 0;
   padding: .1rem 1rem;
   background-color: #ffffff;
