@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import './Sign_Up.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { API_URL } from '../../config';
+import './Sign_Up.css';
 
 const Sign_Up = () => {
-    // const [role, setRole] = useState('');
+    const [role, setRole] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
@@ -13,17 +13,17 @@ const Sign_Up = () => {
     const navigate = useNavigate();
 
     // Function to handle form submission
-    const register = async(e) => {
+    const register = async (e) => {
         e.preventDefault(); // prevent default form submission
 
         // API call to register user
         const response = await fetch(`${API_URL}/api/auth/register`, {
             method: "POST",
             headers: {
-                "Content-Type": "application.json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                // role: role,
+                role: role,
                 name: name,
                 email: email,
                 password: password,
@@ -36,14 +36,14 @@ const Sign_Up = () => {
         if (json.authtoken) {
             // Store user data in session storage
             sessionStorage.setItem("auth-token", json.authtoken);
-            // sessionStorage.setItem("role", role);
+            sessionStorage.setItem("role", role);
             sessionStorage.setItem("name", name);
             sessionStorage.setItem("phone", phone);
             sessionStorage.setItem("email", email);
 
             // Redirect user to home page
             navigate("/");
-            window.location.relaod();
+            window.location.reload();
         } else {
             if (json.errors) {
                 for (const error of json.errors) {
@@ -58,12 +58,12 @@ const Sign_Up = () => {
     return (
         <div className="signup_div">
             <h1>Sign Up</h1>
-            <p>Already a member? <a href="login.html">Log In</a></p>
+            <p>Already a member? <Link to={"/Login"}>Log In</Link></p>
 
             <form method="POST" onSubmit={register}>
-                <fieldset id="form">
+                <fieldset>
                     <label htmlFor="role">Role</label>
-                    <select /* value={role} onChange={(e) => setRole(e.target.value)} */ id="role" name="role" required="">
+                    <select value={role} onChange={(e) => setRole(e.target.value)} id="role" name="role" required="">
                         <option value="Patient">Patient</option>
                         <option value="Doctor">Doctor</option>
                     </select>
@@ -83,9 +83,7 @@ const Sign_Up = () => {
                     <label htmlFor="password">Password</label>
                     <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" id="password" name="password" required="" />
                     {showerr && <div className="err" style={{ color: 'red' }}>{showerr}</div>}
-                </fieldset>
-
-                <fieldset id="submit">
+                
                     <input type="submit" value="Submit" id="submit-btn" />
                     <input type="reset" value="Reset" id="reset-btn" />
                 </fieldset>

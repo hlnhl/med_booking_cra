@@ -1,11 +1,12 @@
 import React from "react";
+import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
     return (
         <div className="login_div">
             <h1>Log In</h1>
-            <p>Are you a new member? <a href="signup.html">Sign Up</a></p>
+            <p>Are you a new member? <Link to={"/Sign_Up"}>Sign Up</Link></p>
             <form>
                 <fieldset id="form">
                     <label htmlFor="email">Email</label>
