@@ -7,8 +7,36 @@ const Navbar = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
-    const [showDropdown, setShowDropdown] = useState(false);
     const handleClick = () => setClick(click);
+
+    const handleLogout = () => {
+        sessionStorage.removeItem("auth-token");
+        sessionStorage.removeItem("role");
+        sessionStorage.removeItem("name");
+        sessionStorage.removeItem("email");
+        sessionStorage.removeItem("phone");
+        setIsLoggedIn(false);
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          if (key.startsWith("reviewFormData_")) {
+            localStorage.removeItem(key);
+          }
+        }
+        setUsername('');
+        setEmail('');
+        window.location.reload();
+    }
+
+    useEffect(() => { 
+      const storedemail = sessionStorage.getItem("email");
+      const storedname = sessionStorage.getItem("name");
+
+      if (storedemail) {
+            setIsLoggedIn(true);
+            setUsername(storedname);
+          }
+        },
+    []);
 
 
     return (
@@ -23,8 +51,17 @@ const Navbar = () => {
                 <li><a href="../Appointments/appointments.html">Appointments</a></li>
                 <li><a href="../Blog/blog.html">Health Blog</a></li>
                 <li><a href="../Reviews/reviews.html">Reviews</a></li>
+                {isLoggedIn?(
+                    <>
+                    <li><p>Hello, {username}!</p></li>
+                <li><button onClick={handleLogout}>Logout</button></li>
+                </>
+        ) : (
+                <>
                 <li><Link to={"/Sign_Up"}><button>Sign Up</button></Link></li>
                 <li><Link to={"/Login"}><button>Log In</button></Link></li>
+                </>
+        )}
             </ul>
         </nav>
     )

@@ -8,7 +8,7 @@ const Sign_Up = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
-    const [password, setPassword] = useState('');
+    const [password, setPassword] = useState("");
     const [showerr, setShowerr] = useState('');
     const navigate = useNavigate();
 
@@ -73,7 +73,7 @@ const Sign_Up = () => {
                     {showerr && <div className="err" style={{ color: 'red' }}>{showerr}</div>}
                     
                     <label htmlFor="phone">Phone number</label>
-                    <input value={phone} onChange={(e) => setPhone(e.target.value)} type="phonenumber" id="phone" name="phone" required="" pattern="[1-9][1-9][1-9]-[1-9][1-9][1-9]-[1-9][1-9][1-9][1-9]"/>
+                    <input value={phone} onChange={(e) => setPhone(e.target.value)} type="tel" id="phone" name="phone" required="" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
                     {showerr && <div className="err" style={{ color: 'red' }}>{showerr}</div>}
 
                     <label htmlFor="email">Email</label>
