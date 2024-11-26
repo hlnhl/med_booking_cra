@@ -36,7 +36,9 @@ const Login = () => {
         if (json.authtoken) {
             // Store user data in session storage
             sessionStorage.setItem("auth-token", json.authtoken);
-            sessionStorage.setItem("email", email);
+            sessionStorage.setItem("email", json.email);
+            sessionStorage.setItem("name", json.name);
+            sessionStorage.setItem("role", json.role);
 
             // Redirect user to home page
             navigate("/");
