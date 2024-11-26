@@ -1,53 +1,46 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import './Sign_Up.css'
+import { Link, useNavigate } from 'react-router-dom';
 import { API_URL } from '../../config';
-import './Sign_Up.css';
-
+// Function component for Sign Up form
 const Sign_Up = () => {
-    const [role, setRole] = useState('');
+    // State variables using useState hook
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
-    const [password, setPassword] = useState("");
-    const [showerr, setShowerr] = useState('');
-    const navigate = useNavigate();
-
+    const [password, setPassword] = useState('');
+    const [showerr, setShowerr] = useState(''); // State to show error messages
+    const navigate = useNavigate(); // Navigation hook from react-router
     // Function to handle form submission
     const register = async (e) => {
-        e.preventDefault(); // prevent default form submission
-
-        // API call to register user
+        e.preventDefault(); // Prevent default form submission
+        // API Call to register user
         const response = await fetch(`${API_URL}/api/auth/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                role: role,
                 name: name,
                 email: email,
                 password: password,
                 phone: phone,
             }),
         });
-
-        const json = await response.json();
-
+        const json = await response.json(); // Parse the response JSON
         if (json.authtoken) {
             // Store user data in session storage
             sessionStorage.setItem("auth-token", json.authtoken);
-            sessionStorage.setItem("role", role);
             sessionStorage.setItem("name", name);
             sessionStorage.setItem("phone", phone);
             sessionStorage.setItem("email", email);
-
             // Redirect user to home page
             navigate("/");
-            window.location.reload();
+            window.location.reload(); // Refresh the page
         } else {
             if (json.errors) {
                 for (const error of json.errors) {
-                    setShowerr(error.msg); // Show error messges
+                    setShowerr(error.msg); // Show error messages
                 }
             } else {
                 setShowerr(json.error);
@@ -63,7 +56,7 @@ const Sign_Up = () => {
             <form method="POST" onSubmit={register}>
                 <fieldset>
                     <label htmlFor="role">Role</label>
-                    <select value={role} onChange={(e) => setRole(e.target.value)} id="role" name="role" required="">
+                    <select id="role" name="role">
                         <option value="Patient">Patient</option>
                         <option value="Doctor">Doctor</option>
                     </select>
@@ -90,7 +83,7 @@ const Sign_Up = () => {
             </form>
         </div>
 
-    )
-}
+    );
+};
 
 export default Sign_Up;

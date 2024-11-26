@@ -11,7 +11,6 @@ const Navbar = () => {
 
     const handleLogout = () => {
         sessionStorage.removeItem("auth-token");
-        sessionStorage.removeItem("role");
         sessionStorage.removeItem("name");
         sessionStorage.removeItem("email");
         sessionStorage.removeItem("phone");
@@ -29,12 +28,12 @@ const Navbar = () => {
 
     useEffect(() => { 
       const storedemail = sessionStorage.getItem("email");
-      const storedname = sessionStorage.getItem("name");
 
       if (storedemail) {
             setIsLoggedIn(true);
-            setUsername(storedname);
-          }
+            // const storedname = storedemail.substring(0,storedemail.indexOf('@'));
+            setUsername(storedemail);
+          };
         },
     []);
 
@@ -64,7 +63,7 @@ const Navbar = () => {
         )}
             </ul>
         </nav>
-    )
-}
+    );
+};
 
 export default Navbar;

@@ -4,8 +4,8 @@ import { API_URL } from '../../config';
 import './Login.css';
 
 const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [showerr, setShowerr] = useState('');
     const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ const Login = () => {
             },
             body: JSON.stringify({
                 email: email,
-                password: password
+                password: password,
             }),
         });
 
@@ -36,9 +36,8 @@ const Login = () => {
         if (json.authtoken) {
             // Store user data in session storage
             sessionStorage.setItem("auth-token", json.authtoken);
-            sessionStorage.setItem("email", json.email);
-            sessionStorage.setItem("name", json.name);
-            sessionStorage.setItem("role", json.role);
+            sessionStorage.setItem("email", email);
+            sessionStorage.setItem("name", email.substring(0, email.indexOf('@')));
 
             // Redirect user to home page
             navigate("/");
@@ -76,6 +75,6 @@ const Login = () => {
             </div>
 
     )
-}
+};
 
 export default Login;

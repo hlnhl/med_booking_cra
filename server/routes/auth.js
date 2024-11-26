@@ -96,7 +96,7 @@ router.post('/login', [
             // console.log('my',theUser.name);
         // req.session.name=theUser.name
         req.session.email = req.body.email; // <-- Change req.body.username to req.body.name
-        console.log(req.session.email);
+        // console.log(req.session.email);
         // console.log(req.session.name);
         if (theUser) {
             let checkHash = await bcrypt.compare(req.body.password, theUser.password);
@@ -176,7 +176,6 @@ router.get('/user', async (req, res) => {
             name: user.name,
             email: user.email,
             phone: user.phone,
-            role: user.role,
             createdAt: user.createdAt,
             updatedAt: user.updatedAt,
         };
