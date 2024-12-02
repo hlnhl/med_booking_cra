@@ -63,11 +63,9 @@ const Sign_Up = () => {
 
                     <label htmlFor="name">Name</label>
                     <input value={name} onChange={(e) => setName(e.target.value)} type="text" id="name" name="name" required="" />
-                    {showerr && <div className="err" style={{ color: 'red' }}>{showerr}</div>}
                     
                     <label htmlFor="phone">Phone number</label>
                     <input value={phone} onChange={(e) => setPhone(e.target.value)} type="tel" id="phone" name="phone" required="" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
-                    {showerr && <div className="err" style={{ color: 'red' }}>{showerr}</div>}
 
                     <label htmlFor="email">Email</label>
                     <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="email" name="email" required="" />
@@ -75,7 +73,6 @@ const Sign_Up = () => {
 
                     <label htmlFor="password">Password</label>
                     <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" id="password" name="password" required="" />
-                    {showerr && <div className="err" style={{ color: 'red' }}>{showerr}</div>}
                 
                     <input type="submit" value="Submit" id="submit-btn" />
                     <input type="reset" value="Reset" id="reset-btn" />

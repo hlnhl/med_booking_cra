@@ -28,11 +28,11 @@ const Navbar = () => {
 
     useEffect(() => { 
       const storedemail = sessionStorage.getItem("email");
+      const storedname = sessionStorage.getItem("name");
 
       if (storedemail) {
             setIsLoggedIn(true);
-            // const storedname = storedemail.substring(0,storedemail.indexOf('@'));
-            setUsername(storedemail);
+            setUsername(storedname);
           };
         },
     []);
