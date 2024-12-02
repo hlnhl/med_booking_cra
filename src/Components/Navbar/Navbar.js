@@ -32,6 +32,7 @@ const Navbar = () => {
 
       if (storedemail) {
             setIsLoggedIn(true);
+            setEmail(storedemail);
             setUsername(storedname);
           };
         },
@@ -52,7 +53,8 @@ const Navbar = () => {
                 <li><a href="../Reviews/reviews.html">Reviews</a></li>
                 {isLoggedIn?(
                     <>
-                    <li><p>Hello, {username}!</p></li>
+                    <li><Link to={"/instant-consultation"}>Instant Consultation</Link></li>
+                    <li><p>Hello, {username}! Your email is {email}</p></li>
                 <li><button onClick={handleLogout}>Logout</button></li>
                 </>
         ) : (
