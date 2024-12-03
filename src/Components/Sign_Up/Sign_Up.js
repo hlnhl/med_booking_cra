@@ -5,6 +5,7 @@ import { API_URL } from '../../config';
 // Function component for Sign Up form
 const Sign_Up = () => {
     // State variables using useState hook
+    const [role, setRole] = useState('Patient');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
@@ -21,6 +22,7 @@ const Sign_Up = () => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                role: role,
                 name: name,
                 email: email,
                 password: password,
@@ -31,6 +33,7 @@ const Sign_Up = () => {
         if (json.authtoken) {
             // Store user data in session storage
             sessionStorage.setItem("auth-token", json.authtoken);
+            sessionStorage.setItem("role", role);
             sessionStorage.setItem("name", name);
             sessionStorage.setItem("phone", phone);
             sessionStorage.setItem("email", email);
@@ -56,7 +59,7 @@ const Sign_Up = () => {
             <form method="POST" onSubmit={register}>
                 <fieldset>
                     <label htmlFor="role">Role</label>
-                    <select id="role" name="role">
+                    <select value={role} onChange={(e) => setRole(e.target.value)} id="role" name="role" required="">
                         <option value="Patient">Patient</option>
                         <option value="Doctor">Doctor</option>
                     </select>

@@ -42,6 +42,7 @@ router.post('/register',[
     body('name', "Username should be at least 4 characters.").isLength({ min: 4 }),
     body('password', "Password Should Be At Least 8 Characters.").isLength({ min: 8 }),
     body('phone', "Phone Number Should Be 10 Digits.").isLength({ min: 10 }),
+    body('role', "Please Select a Role").isString(),
 ], async (req, res) => {
 
     const error = validationResult(req);
@@ -60,8 +61,9 @@ router.post('/register',[
         
         const newUser =  await UserSchema.create({
             email: req.body.email,
-            name: req.body.name,
             password: hash,
+            role: req.body.role,
+            name: req.body.name,
             phone: req.body.phone,
             createdAt: Date(),
         });
@@ -94,7 +96,8 @@ router.post('/login', [
       
         const theUser = await UserSchema.findOne({ email: req.body.email }); // <-- Change req.body.username to req.body.name
             // console.log('my',theUser.name);
-        req.session.name = theUser.name
+        // req.session.role = theUser.role;
+        // req.session.name = theUser.name;
         req.session.email = req.body.email; // <-- Change req.body.username to req.body.name
         // console.log(req.session.email);
         // console.log(req.session.name);
@@ -107,7 +110,7 @@ router.post('/login', [
                     }
                 }
                 const authtoken = jwt.sign(payload, JWT_SECRET);
-                return res.status(200).json({ authtoken });
+                return res.status(200).json({ authtoken, theUser });
             } else {
                 return res.status(403).json({ error: "Invalid Credentials" });
             }
@@ -176,6 +179,7 @@ router.get('/user', async (req, res) => {
             name: user.name,
             email: user.email,
             phone: user.phone,
+            role: user.role,
             createdAt: user.createdAt,
             updatedAt: user.updatedAt,
         };

@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
-const mongoURI =  "mongodb://root:FgXeMEyshmdf2yiTUIrBg7iy@172.21.19.152:27017";
+const mongoURI =  "mongodb+srv://stayhealthy_dbaccess:JEQuZWeZtHJIl9bL@stayhealthycluster.aqko8.mongodb.net/"; // for local machine work
+// const mongoURI =  "mongodb://root:FgXeMEyshmdf2yiTUIrBg7iy@172.21.19.152:27017"; // for skills network work
 
 const connectToMongo = async (retryCount) => {
     const MAX_RETRIES = 3;
     const count = retryCount ?? 0;
     try {
-        await mongoose.connect(mongoURI, { dbName: 'stayhealthybeta1'});
+        await mongoose.connect(mongoURI, { dbName: 'stayhealthy' });
         console.info('Connected to Mongo Successfully')
 
         return;

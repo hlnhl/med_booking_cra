@@ -5,7 +5,9 @@ import './Navbar.css';
 const Navbar = () => {
     const [click, setClick] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [role, setRole] = useState('');
     const [username, setUsername] = useState('');
+    const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const handleClick = () => setClick(click);
 
@@ -14,6 +16,7 @@ const Navbar = () => {
         sessionStorage.removeItem("name");
         sessionStorage.removeItem("email");
         sessionStorage.removeItem("phone");
+        sessionStorage.removeItem("role");
         setIsLoggedIn(false);
         for (let i = 0; i < localStorage.length; i++) {
           const key = localStorage.key(i);
@@ -23,17 +26,20 @@ const Navbar = () => {
         }
         setUsername('');
         setEmail('');
+        setPhone('');
+        setRole('');
         window.location.reload();
     }
 
     useEffect(() => { 
       const storedemail = sessionStorage.getItem("email");
-      const storedname = sessionStorage.getItem("name");
 
       if (storedemail) {
             setIsLoggedIn(true);
             setEmail(storedemail);
-            setUsername(storedname);
+            setRole(sessionStorage.getItem("role"));
+            setUsername(sessionStorage.getItem("name"));
+            setPhone(sessionStorage.getItem("phone"));
           };
         },
     []);
@@ -54,7 +60,7 @@ const Navbar = () => {
                 {isLoggedIn?(
                     <>
                     <li><Link to={"/instant-consultation"}>Instant Consultation</Link></li>
-                    <li><p>Hello, {username}! Your email is {email}</p></li>
+                    <li><p>Hello, {role==="Doctor"?(<>{role} </>):(<></>)}<b>{username}</b>! Your email is {email}, and your phone number is {phone}.</p></li>
                 <li><button onClick={handleLogout}>Logout</button></li>
                 </>
         ) : (
