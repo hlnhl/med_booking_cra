@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './Navbar.css';
 
 const Navbar = () => {
@@ -10,6 +10,7 @@ const Navbar = () => {
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const handleClick = () => setClick(click);
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         sessionStorage.removeItem("auth-token");
@@ -28,7 +29,8 @@ const Navbar = () => {
         setEmail('');
         setPhone('');
         setRole('');
-        window.location.reload();
+        // TO DO: add notification of successful logout
+        navigate("/");
     }
 
     useEffect(() => { 
@@ -54,21 +56,21 @@ const Navbar = () => {
             </div>
             <ul>
                 <li><Link to={"/"}>Home</Link></li>
-                <li><a href="../Appointments/appointments.html">Appointments</a></li>
                 <li><a href="../Blog/blog.html">Health Blog</a></li>
                 <li><a href="../Reviews/reviews.html">Reviews</a></li>
                 {isLoggedIn?(
                     <>
+                    <li><Link to="/appointments">Appointments</Link></li>
                     <li><Link to={"/instant-consultation"}>Instant Consultation</Link></li>
-                    <li><p>Hello, {role==="Doctor"?(<>{role} </>):(<></>)}<b>{username}</b>! Your email is {email}, and your phone number is {phone}.</p></li>
-                <li><button onClick={handleLogout}>Logout</button></li>
-                </>
-        ) : (
-                <>
-                <li><Link to={"/Sign_Up"}><button>Sign Up</button></Link></li>
-                <li><Link to={"/Login"}><button>Log In</button></Link></li>
-                </>
-        )}
+                    <li><p>Hello, {role==="Doctor"?(<>{role} </>):(<></>)}<b>{username}</b>!</p></li>
+                    <li><button onClick={handleLogout}>Logout</button></li>
+                    </>
+                ) : (
+                    <>
+                    <li><Link to={"/sign_up"}><button>Sign Up</button></Link></li>
+                    <li><Link to={"/login"}><button>Log In</button></Link></li>
+                    </>
+                )}
             </ul>
         </nav>
     );
