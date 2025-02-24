@@ -14,28 +14,39 @@
   background-color: #dfdfdf
 }
 
-h1 {
+.signup_h1 {
   margin: .75rem 0;
   padding: 0;
   font-weight: 800;
 }
 
-p {
+.signup_p {
   margin: 0 0 1rem;
   padding: 0;
   font-size: 0.8rem;
 }
 
-form {
+.signup_a {
+  text-decoration: underline transparent;
+  color: #000000;
+  transition: text-decoration-color 0.4s, color 0.4s;
+}
+
+.signup_a:hover {
+  color: #3685fb;
+  text-decoration-color: #3685fb;
+}
+
+.signup_form {
   width: 90%;
 }
 
-label {
+.signup_label {
   font-size: 0.8rem;
   font-weight: bold;
 }
 
-fieldset {
+.signup_fieldset {
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -43,7 +54,7 @@ fieldset {
   border: none;
 }
 
-fieldset input, fieldset select {
+.signup_input, .signup_select {
   width: 100%;
   margin: .2rem auto .75rem;
   padding: .35rem;
@@ -52,19 +63,24 @@ fieldset input, fieldset select {
   background-color: #ffffff;
 }
 
-#submit {
+.signup_submit {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  border: none;
   align-items: center;
 }
 
-#submit-btn {
+.signup_submit_btn {
   border: none;
   padding: .75rem;
+  margin: 0.2rem 0;
   color: #ffffff;
   background-color: #3685fb;
   font-weight: 600;
 }
 
-#reset-btn {
+.signup_reset_btn {
   border: none;
   padding: .75rem;
   margin: 0 0 1rem;
@@ -72,5 +88,3 @@ fieldset input, fieldset select {
   background-color: #fb3636;
   font-weight: 600;
 }
-
-

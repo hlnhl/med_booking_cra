@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import './Sign_Up.css'
+import classes from './Sign_Up.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { API_URL } from '../../config';
+
 // Function component for Sign Up form
 const Sign_Up = () => {
     // State variables using useState hook
@@ -52,33 +53,33 @@ const Sign_Up = () => {
     };
 
     return (
-        <div className="signup_div">
-            <h1>Sign Up</h1>
-            <p>Already a member? <Link to={"/Login"}>Log In</Link></p>
+        <div className={classes.signup_div}>
+            <h1 className={classes.signup_h1}>Sign Up</h1>
+            <p className={classes.signup_p}>Already a member? <Link className={classes.signup_a} to={"/Login"}>Log In</Link></p>
 
-            <form method="POST" onSubmit={register}>
-                <fieldset>
-                    <label htmlFor="role">Role</label>
-                    <select value={role} onChange={(e) => setRole(e.target.value)} id="role" name="role" required="">
+            <form className={classes.signup_form} method="POST" onSubmit={register}>
+                <fieldset className={classes.signup_fieldset}>
+                    <label className={classes.signup_label} htmlFor="role">Role</label>
+                    <select className={classes.signup_select} value={role} onChange={(e) => setRole(e.target.value)} id="role" name="role" required="">
                         <option value="Patient">Patient</option>
                         <option value="Doctor">Doctor</option>
                     </select>
 
-                    <label htmlFor="name">Name</label>
-                    <input value={name} onChange={(e) => setName(e.target.value)} type="text" id="name" name="name" required="" />
+                    <label className={classes.signup_label} htmlFor="name">Name</label>
+                    <input className={classes.signup_input} value={name} onChange={(e) => setName(e.target.value)} type="text" id="name" name="name" required="" />
                     
-                    <label htmlFor="phone">Phone number</label>
-                    <input value={phone} onChange={(e) => setPhone(e.target.value)} type="tel" id="phone" name="phone" required="" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
+                    <label className={classes.signup_label} htmlFor="phone">Phone number</label>
+                    <input className={classes.signup_input} value={phone} onChange={(e) => setPhone(e.target.value)} type="tel" id="phone" name="phone" required="" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
 
-                    <label htmlFor="email">Email</label>
-                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="email" name="email" required="" />
+                    <label className={classes.signup_label} htmlFor="email">Email</label>
+                    <input className={classes.signup_input} value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="email" name="email" required="" />
                     {showerr && <div className="err" style={{ color: 'red' }}>{showerr}</div>}
 
-                    <label htmlFor="password">Password</label>
-                    <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" id="password" name="password" required="" />
+                    <label className={classes.signup_label} htmlFor="password">Password</label>
+                    <input className={classes.signup_input} value={password} onChange={(e) => setPassword(e.target.value)} type="password" id="password" name="password" required="" />
                 
-                    <input type="submit" value="Submit" id="submit-btn" />
-                    <input type="reset" value="Reset" id="reset-btn" />
+                    <input type="submit" value="Submit" className={classes.signup_submit_btn} />
+                    <input type="reset" value="Reset" className={classes.signup_reset_btn} />
                 </fieldset>
             </form>
         </div>

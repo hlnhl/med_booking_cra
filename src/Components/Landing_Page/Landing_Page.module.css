@@ -1,15 +1,6 @@
-* {
-    box-sizing: border-box;
-    font-family: OpenSans, sans-serif;
-}
-body {
-    background-image: url("../../../public/bg.jpg");
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-}
 
-main {
+
+.land_main {
     display: flex;
     flex-flow: column nowrap;
     width: 60%;
@@ -18,13 +9,13 @@ main {
     margin: 15% auto;
 }
 
-h1 {
+.land_h1 {
     text-align: center;
     font-weight: 800;
     margin: 0;
 }
 
-.line2 {
+.gradient {
     background: linear-gradient(to right, #3685fb, #3685fb, #ac36fb, #ac36fb);
     -webkit-background-clip: text;
     background-clip: text;
@@ -32,18 +23,27 @@ h1 {
 
 }
 
-.body-text {
+.body_text {
     margin: 3em auto;
     text-align: center;
     color: #646464;
     font-size: .8rem;
 }
- main button {
+
+ .land_button {
+    margin: 2rem auto;
+    padding: .2rem 1rem;
     background-color: #3685fb;
     color: #ffffff;
-    font-weight: 600;
     border-radius: 1rem;
+    font-weight: 600;
     border: 2px solid #3685fb;
-    margin: 3em auto;
-    padding: .1rem 1rem;
- }
+    transition: color 0.4s, background-color 0.4s;
+  
+  }
+  
+  .land_button:hover {
+    background-color: transparent;
+    border-color: #3685fb;
+    color: #000000;
+  }

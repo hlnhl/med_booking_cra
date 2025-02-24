@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './InstantConsultation.css';
+import classes from './InstantConsultation.module.css';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import FindDoctorSearchIC from './FindDoctorSearchIC/FindDoctorSearchIC';
 import DoctorCardIC from './DoctorCardIC/DoctorCardIC';
@@ -11,7 +11,7 @@ const InstantConsultation = () => {
     const [isSearched, setIsSearched] = useState(false);
     
     const getDoctorsDetails = () => {
-        fetch('https://api.npoint.io/9a5543d36f1460da2f63')
+        fetch('dr_list.json')
         .then(res => res.json())
         .then(data => {
             if (searchParams.get('speciality')) {
@@ -60,15 +60,15 @@ const InstantConsultation = () => {
 
     return (
         <center>
-            <div  className="searchpage-container">
+            <div className={classes.searchpageContainer}>
             <FindDoctorSearchIC onSearch={handleSearch} />
-            <div className="search-results-container">
+            <div className={classes.searchResultsContainer}>
             {isSearched ? (
                 <center>
                     <h2>{filteredDoctors.length} doctors are available {searchParams.get('location')}</h2>
                     <h3>Book appointments with minimum wait-time & verified doctor details</h3>
                     {filteredDoctors.length > 0 ? (
-                    filteredDoctors.map(doctor => <DoctorCardIC className="doctorcard" {...doctor} key={doctor.name} />)
+                    filteredDoctors.map(doctor => <DoctorCardIC className={classes.doctorcard} {...doctor} key={doctor.name} />)
                     ) : (
                     <p>No doctors found.</p>
                     )}

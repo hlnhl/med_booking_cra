@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { API_URL } from '../../config';
-import './Login.css';
+import classes from './Login.module.css';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -56,25 +56,23 @@ const Login = () => {
     };
 
     return (
-        <div className="login_div">
-            <h1>Log In</h1>
-            <p>Are you a new member? <Link to={"/Sign_Up"}>Sign Up</Link></p>
-            <form method="POST" onSubmit={login}>
-                <fieldset id="form">
-                    <label htmlFor="email">Email</label>
-                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="email" name="email" required="" />
+        <div className={classes.login_div}>
+            <h1 className={classes.login_h1}>Log In</h1>
+            <p className={classes.login_p}>Are you a new member? <Link className={classes.login_a} to={"/Sign_Up"}>Sign Up</Link></p>
+            <form className={classes.login_form} method="POST" onSubmit={login}>
+                <fieldset className={classes.login_fieldset}>
+                    <label className={classes.login_label} htmlFor="email">Email</label>
+                    <input className={classes.login_input} value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="email" name="email" required="" />
                     {showerr && <div className="err" style={{ color: 'red' }}>{showerr}</div>}
 
-                    <label htmlFor="password">Password</label>
-                    <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" id="password" name="password" required="" />
+                    <label className={classes.login_label} htmlFor="password">Password</label>
+                    <input className={classes.login_input} value={password} onChange={(e) => setPassword(e.target.value)} type="password" id="password" name="password" required="" />
                     {showerr && <div className="err" style={{ color: 'red' }}>{showerr}</div>}
-                </fieldset>
-                <fieldset id="submit">
-                    <input type="submit" value="Submit" id="submit-btn" />
-                    <input type="reset" value="Reset" id="reset-btn" />
+                    <input type="submit" value="Submit" className={classes.login_submit_btn} />
+                    <input type="reset" value="Reset" className={classes.login_reset_btn} />
                 </fieldset>
             </form>
-            </div>
+        </div>
 
     )
 };

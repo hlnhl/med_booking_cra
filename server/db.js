@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoURI =  "mongodb+srv://stayhealthy_dbaccess:IrEStWpcCMR5mvTR@stayhealthycluster.aqko8.mongodb.net/"; // for local machine work
+const mongoURI =  `mongodb+srv://[username]:[password]@stayhealthycluster.aqko8.mongodb.net/`; // for local machine work
 // const mongoURI =  "mongodb://root:FgXeMEyshmdf2yiTUIrBg7iy@172.21.19.152:27017"; // for skills network work
 
 const connectToMongo = async (retryCount) => {
@@ -7,11 +7,12 @@ const connectToMongo = async (retryCount) => {
     const count = retryCount ?? 0;
     try {
         await mongoose.connect(mongoURI, { dbName: 'stayhealthy' });
-        console.info('Connected to Mongo Successfully')
+        console.info('Connected to Mongo Successfully');
 
         return;
     } catch (error) {
         console.error(error);
+        console.log(mongoURI);
 
         const nextRetryCount = count + 1;
 

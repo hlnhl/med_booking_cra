@@ -1,9 +1,4 @@
-* {
-  box-sizing: border-box;
-  font-family: OpenSans, sans-serif;
-}
-
-nav {
+.nav {
   margin: 1rem;
   padding: 0;
   display: flex;
@@ -11,12 +6,13 @@ nav {
 }
 
 .nav_logo {
+  text-decoration: none;
   font-size: 1.7rem;
   font-weight: bold;
   color: #000000;
 }
 
-ul {
+.nav_ul {
   display: flex;
   list-style-type: none;
   margin: 0;
@@ -24,28 +20,28 @@ ul {
   font-size: 0.8rem;
 }
 
-li {
+.nav_li {
   margin: .5em 1em 0;
   padding: 0;
 }
 
 
 /* Link Styling */
-a {
+.nav_a {
   text-decoration: underline transparent;
   color: #000000;
   transition: text-decoration-color 0.4s, color 0.4s;
 }
 
-a:hover:not(.nav_logo) {
+.nav_a:hover {
   color: #3685fb;
   text-decoration-color: #3685fb;
 }
 
-nav button {
+.nav_button {
   margin: -4px 0 0;
   padding: .1rem 1rem;
-  background-color: #ffffff;
+  background-color: transparent;
   color: #000000;
   border-radius: .75rem;
   border: 2px solid #3685fb;
@@ -53,7 +49,7 @@ nav button {
 
 }
 
-button:hover {
+.nav_button:hover {
   background-color: #3685fb;
   border-color: #3685fb;
   color: #ffffff;
