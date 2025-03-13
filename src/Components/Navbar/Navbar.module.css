@@ -1,8 +1,10 @@
 .nav {
-  margin: 1rem;
-  padding: 0;
+  margin: 0;
+  padding: .3rem .5rem;
   display: flex;
+  flex-flow: row wrap;
   justify-content: space-between;
+  row-gap: .8em;
 }
 
 .nav_logo {
@@ -13,7 +15,19 @@
 }
 
 .nav_ul {
-  display: flex;
+  display: inline-flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+}
+
+.nav_ul_login {
+  display: inline-flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -22,6 +36,11 @@
 
 .nav_li {
   margin: .5em 1em 0;
+  padding: 0;
+}
+
+.nav_p {
+  margin: 0;
   padding: 0;
 }
 

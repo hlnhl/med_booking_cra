@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoURI =  `mongodb+srv://[username]:[password]@stayhealthycluster.aqko8.mongodb.net/`; // for local machine work
+const mongoURI =  `mongodb+srv://[user]:[pass]@stayhealthycluster.aqko8.mongodb.net/`; // for local machine work
 // const mongoURI =  "mongodb://root:FgXeMEyshmdf2yiTUIrBg7iy@172.21.19.152:27017"; // for skills network work
 
 const connectToMongo = async (retryCount) => {

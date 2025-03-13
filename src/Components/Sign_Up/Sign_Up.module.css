@@ -1,8 +1,3 @@
-* {
-  box-sizing: border-box;
-  font-family: OpenSans, sans-serif;
-}
-
 .signup_div {
   display: flex;
   flex-flow: column nowrap;
